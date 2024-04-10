@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+         <title>guess the number</title>
+         <style>
+            div{
+                text-align:center;
+                background-color:rgba(76, 56, 225, 0.884);
+                width:40%;
+                height:10%;
+                display:flex;
+                flex-direction:column;
+                margin-top :2%;
+                margin-left:30%;
+            }
+            button{
+                border-color:red;
+                margin-top:30px;
+                width:40%;
+                text-align:center;
+                margin-left:30%;
+                background-color:darkviolet;
+                color:white;
+            }
+            #input{
+                width:80%;
+                margin-left:8%;
+                border-color:blue;
+            }
+            h1 {
+      color: white;
+      text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+         </style>
+    </head>
+<body>
+<div>
+<h1>GUESS THE NUMBER</h1>
+<input id="input">
+<button onclick="guess()">check</button>
+<h1 id="check"></h1>
+<h2 id="scoreDisplay">score:10</h2>
+</div>
+<script>
+    var guessnumber=document.getElementById("input")
+    var check=document.getElementById("check")
+    var scoreDisplay=document.getElementById("scoreDisplay")
+    var score=10;
+    var a= Math.random()
+    var number= Math.floor((a*10)+1)
+    function guess(){
+        var guessno=Number(guessnumber.value)
+        
+    if(guessno === number){
+    console.log("your guess is correct");
+    check.textContent="your guess is correct"
+    check.style.color="green";
+    scoreDisplay.textContent="score:" + score;
+}
+else{
+    console.log("your guess is wrong")
+    check.textContent="your guess is wrong "
+    check.style.color="red";
+    score--;
+    scoreDisplay.textContent="score:" + score;
+}
+    }
+</script>
+</body>
+</html>

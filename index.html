@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html style="text-align:center;">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>
+        LOGIN
+    </title>
+    <style>
+        .menu{
+            border:2px;
+            border-color:rgb(128, 77, 0);
+            border-radius:20px;
+            font-size:150%;
+            background-color:green;
+        }
+    </style>
+</head>
+<body style="background-image:url('image3.jpg');">
+    <nav class="container">
+        <form action="/home.html" method="post" name="registrationform" id="form" onsubmit="return validateForm()">
+            <h1 style="text-align:center;color:rgb(0, 208, 255)">LOGIN</h1>    
+            <br> 
+            <nav class="inputgrp">
+                <label for="username"> Username: </label>
+                <input type="text" name="username" id="username" placeholder="enter your first name">
+                <nav class="error" id="une"></nav> <!-- Error message for username -->
+            </nav>
+            <br>
+            <nav class="inputgrp">
+                <label for="email"> E-Mail:</label>
+                <input type="text"  name="email" id="email" placeholder="enter your e-mail" >
+                <nav class="error" id="emailError"></nav> <!-- Error message for email -->
+            </nav>
+            <br>
+            <nav class="inputgrp">
+                <label for="password">Password</label>
+                <input type="password" placeholder="enter your password" name="password" id="password" >
+                <nav class="error" id="passwordError"></nav> <!-- Error message for password -->
+            </nav>
+            <br>
+            <nav class="inputgrp">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" placeholder="confirm your password" name="password2" id="password2" >
+                <nav class="error" id="password2Error"></nav> <!-- Error message for confirm password -->
+            </nav>
+            <br>
+            <nav class="inputgrp">
+                <label for="date">Date Of Birth:</label>
+                <input type="date" id="dob" name="dob" max="2050-02-25">
+                <nav class="error" id="dobError"></nav> <!-- Error message for date of birth -->
+            </nav>
+            <br>
+            <br>
+            <button type="submit" value="login">login</button><br><br>
+            <button type="reset">Reset</button>
+        </form>
+    </nav>
+    <!-- <script src="email2.js" ></script> -->
+    <script>
+        function validateForm() {
+          var username = document.getElementById('username').value;
+          var email = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          var password2 = document.getElementById('password2').value;
+          var dob = document.getElementById('dob').value;
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          var passwordRegex = /^.{6,8}$/;
+          var usernameRegex = /^[a-zA-Z]+$/; 
+        
+          // Reset error messages
+          document.querySelectorAll('.error').forEach(function(error) {
+            error.innerHTML = '';
+          });
+        
+          if (username.trim() === '') {
+            document.getElementById('une').innerHTML = "First name or Second name should not be empty";
+            document.getElementById('username').focus();
+            return false;
+          }
+        
+          if (!emailRegex.test(email)) {
+    document.getElementById('emailError').innerHTML = "Please enter a valid Email address";
+    return false; // Prevent form submission
+}
+        
+          if (!passwordRegex.test(password)) {
+            document.getElementById('passwordError').innerHTML = "Password must be 6 to 8 characters long";
+            document.getElementById('password').focus();
+            return false;
+          }
+        
+          if (password !== password2) {
+            document.getElementById('password2Error').innerHTML = "Passwords do not match";
+            document.getElementById('password2').focus();
+            return false;
+          }
+        
+          if (dob === '') {
+            document.getElementById('dobError').innerHTML = "Enter a Valid Date Of Birth";
+            document.getElementById('dob').focus();
+            return false;
+          }
+        
+          return true;
+        }
+        
+        document.getElementById("form").addEventListener("submit", function(event) {
+          if (!validateForm()) {
+            event.preventDefault();
+          }
+        });
+        </script>
+</body>
+</html>
